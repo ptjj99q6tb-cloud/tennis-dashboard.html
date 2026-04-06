@@ -2,179 +2,146 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tennis Courts</title>
+<title>Tennis Team App</title>
 
 <style>
-
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI";
-background:#f2f2f7;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI";
+  background:#0e0e0e;
+  color:white;
 }
 
+/* Header */
 .header{
-background:white;
-padding:18px;
-text-align:center;
-font-weight:600;
-font-size:22px;
-border-bottom:1px solid #ddd;
+  padding:15px;
+  font-size:20px;
+  font-weight:600;
+  background:#000;
+  text-align:center;
+  border-bottom:1px solid #222;
 }
 
-.section{
-margin-top:20px;
+/* Pages */
+.page{
+  display:none;
+  padding:15px;
 }
 
-.section-title{
-font-size:14px;
-color:#6b6b6b;
-padding-left:20px;
-margin-bottom:8px;
+.active{
+  display:block;
 }
 
+/* Cards */
 .card{
-background:white;
-margin:10px 15px;
-border-radius:16px;
-padding:18px;
-box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  background:#1a1a1a;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:14px;
 }
 
-.court-name{
-font-size:18px;
-font-weight:600;
+/* Map */
+.map{
+  width:100%;
+  height:300px;
+  border-radius:12px;
+  overflow:hidden;
 }
 
-.players{
-margin-top:5px;
-color:#555;
+iframe{
+  width:100%;
+  height:100%;
+  border:0;
 }
 
-.status{
-margin-top:6px;
-font-size:13px;
-font-weight:600;
+/* Bottom Nav */
+.navbar{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#000;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 0;
+  border-top:1px solid #222;
 }
 
-.open{
-color:#34c759;
+.nav-item{
+  color:#888;
+  font-size:12px;
+  text-align:center;
 }
 
-.inuse{
-color:#ff3b30;
+.nav-item.active{
+  color:#00e676;
 }
 
 button{
-margin-top:12px;
-padding:8px 14px;
-border:none;
-border-radius:10px;
-font-weight:600;
+  background:none;
+  border:none;
+  color:inherit;
+  font-size:14px;
 }
 
-.assign{
-background:#007aff;
-color:white;
+/* Spacing for bottom nav */
+.spacer{
+  height:70px;
 }
-
-.clear{
-background:#e5e5ea;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="header">
-🎾 Tennis Court Tracker
+<div class="header">🎾 WCMS Tennis</div>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="card">
+    <h2>Next Match</h2>
+    <p>April 10 vs Central High</p>
+  </div>
+
+  <div class="card">
+    <h2>Announcements</h2>
+    <p>No new updates</p>
+  </div>
 </div>
 
-<div class="section">
-<div class="section-title">Upper Courts</div>
-
-<div class="card">
-<div class="court-name">Court 1</div>
-<div class="players" id="p1">No players</div>
-<div class="status open" id="s1">Open</div>
-<button class="assign" onclick="assign(1)">Assign</button>
-<button class="clear" onclick="clearCourt(1)">Clear</button>
+<!-- TEAM -->
+<div id="team" class="page">
+  <div class="card">
+    <h2>Team Roster</h2>
+    <p>Player list coming soon</p>
+  </div>
 </div>
 
-<div class="card">
-<div class="court-name">Court 2</div>
-<div class="players" id="p2">No players</div>
-<div class="status open" id="s2">Open</div>
-<button class="assign" onclick="assign(2)">Assign</button>
-<button class="clear" onclick="clearCourt(2)">Clear</button>
-</div>
-</div>
-
-<div class="section">
-<div class="section-title">Lower Courts</div>
-
-<div class="card">
-<div class="court-name">Court 3</div>
-<div class="players" id="p3">No players</div>
-<div class="status open" id="s3">Open</div>
-<button class="assign" onclick="assign(3)">Assign</button>
-<button class="clear" onclick="clearCourt(3)">Clear</button>
+<!-- MAP -->
+<div id="mapPage" class="page">
+  <div class="card">
+    <h2>Court Location</h2>
+    <div class="map">
+      <iframe src="https://www.google.com/maps?q=Whitley%20County%20High%20School&output=embed"></iframe>
+    </div>
+  </div>
 </div>
 
-<div class="card">
-<div class="court-name">Court 4</div>
-<div class="players" id="p4">No players</div>
-<div class="status open" id="s4">Open</div>
-<button class="assign" onclick="assign(4)">Assign</button>
-<button class="clear" onclick="clearCourt(4)">Clear</button>
-</div>
+<div class="spacer"></div>
 
-<div class="card">
-<div class="court-name">Court 5</div>
-<div class="players" id="p5">No players</div>
-<div class="status open" id="s5">Open</div>
-<button class="assign" onclick="assign(5)">Assign</button>
-<button class="clear" onclick="clearCourt(5)">Clear</button>
-</div>
-
-<div class="card">
-<div class="court-name">Court 6</div>
-<div class="players" id="p6">No players</div>
-<div class="status open" id="s6">Open</div>
-<button class="assign" onclick="assign(6)">Assign</button>
-<button class="clear" onclick="clearCourt(6)">Clear</button>
-</div>
-
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="nav-item active" onclick="showPage('home', this)">🏠<br>Home</div>
+  <div class="nav-item" onclick="showPage('team', this)">👥<br>Team</div>
+  <div class="nav-item" onclick="showPage('mapPage', this)">📍<br>Map</div>
 </div>
 
 <script>
+function showPage(pageId, el){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
 
-function assign(court){
-
-let players = prompt("Enter players (ex: Parker vs Daniel)")
-
-if(players){
-
-document.getElementById("p"+court).innerText = players
-
-let status = document.getElementById("s"+court)
-status.innerText = "In Use"
-status.className = "status inuse"
-
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
 }
-
-}
-
-function clearCourt(court){
-
-document.getElementById("p"+court).innerText = "No players"
-
-let status = document.getElementById("s"+court)
-status.innerText = "Open"
-status.className = "status open"
-
-}
-
 </script>
 
 </body>
